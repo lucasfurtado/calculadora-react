@@ -1,114 +1,131 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, {Component} from 'react';
+import {Text, View, StyleSheet,Button} from 'react-native';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+export default class Calculator extends Component{
+  
+  buttonPressed(text){
+    this.setState({
+      textOperation: this.state.textOperation+text
+    })
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+    if(text == 'CLEAR'){
+      this.setState({
+        textOperation: '',
+        textResult: ''
+      })
+    }
+  }
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+  result(){
+    let operation = eval(this.state.textOperation)
+    this.setState({
+      textResult: operation
+    })
+  }
+
+
+  constructor(){
+    super();
+    this.state = {textOperation: '', textResult: ''};
+  }
+
+  render(){
+    return (
+      <View style={{flex:1}}>
+
+        <View style={styles.display}>
+          <View style={styles.calculation}>
+            <Text style={styles.textOperation}>{this.state.textOperation}</Text>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+          <View style={styles.result}>
+            <Text style={styles.textResult}>{this.state.textResult}</Text>
+          </View>
+        </View>
+
+        <View style= {styles.buttons}>
+          <View style = {styles.numbers}>
+            <View style={styles.rowOfNumbers}>
+              <Button onPress = {() => this.buttonPressed('7')} title = '7'/>
+              <Button onPress = {() => this.buttonPressed('8')} title = '8'/>
+              <Button onPress = {() => this.buttonPressed('9')} title = '9'/>
+            </View>
+            <View style={styles.rowOfNumbers}>
+              <Button onPress = {() => this.buttonPressed('4')} title = '4'/>
+              <Button onPress = {() => this.buttonPressed('5')} title = '5'/>
+              <Button onPress = {() => this.buttonPressed('6')} title = '6'/>
+            </View>
+            <View style={styles.rowOfNumbers}>
+              <Button onPress = {() => this.buttonPressed('1')} title = '1'/>
+              <Button onPress = {() => this.buttonPressed('2')} title = '2'/>
+              <Button onPress = {() => this.buttonPressed('3')} title = '3'/>
+            </View>
+            <View style={styles.rowOfNumbers}>
+              <Button onPress = {() => this.buttonPressed('0')} title = '0'/>
+              <Button onPress = {() => this.buttonPressed('.')} title = '.'/>
+              <Button onPress = {() => this.result()} title = '='/>
+            </View>
+          </View>
+          <View style = {styles.operators}>
+            <Button onPress = {() => this.buttonPressed('CLEAR')} title = 'CLEAR'/>
+            <Button onPress = {() => this.buttonPressed('+')} title = '+'/>
+            <Button onPress = {() => this.buttonPressed('-')} title = '-'/>
+            <Button onPress = {() => this.buttonPressed('*')} title = 'x'/>
+            <Button onPress = {() => this.buttonPressed('/')} title = '/'/>
+          </View>
+        </View>
+
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
-export default App;
+  display:{
+    flex:1,
+  },
+
+  buttons:{
+    flex:3,
+    flexDirection: 'row',
+  },
+
+  calculation:{
+    flex:1,
+    backgroundColor: 'skyblue'
+  },
+
+  result:{
+    flex:1,
+    backgroundColor: 'powderblue',
+  },
+
+  numbers:{
+    flex: 3,
+    backgroundColor: 'steelblue',
+  },
+
+  operators:{
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
+  textOperation:{
+    fontSize: 40,
+  },
+
+  textResult:{
+    fontSize: 30,
+    color: 'grey',
+  },
+
+  rowOfNumbers:{
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
+});
