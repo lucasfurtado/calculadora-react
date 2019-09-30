@@ -1,5 +1,5 @@
 # calculadora-react
-It's a calculator made in Retact Native
+It's a calculator made in React Native
 
 ## Diary
 
