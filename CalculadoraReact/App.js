@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet,Button} from 'react-native';
+import {Text, View, StyleSheet,Button, TouchableOpacity} from 'react-native';
 
 export default class Calculator extends Component{
   
@@ -45,32 +45,66 @@ export default class Calculator extends Component{
         <View style= {styles.buttons}>
           <View style = {styles.numbers}>
             <View style={styles.rowOfNumbers}>
-              <Button onPress = {() => this.buttonPressed('7')} title = '7'/>
-              <Button onPress = {() => this.buttonPressed('8')} title = '8'/>
-              <Button onPress = {() => this.buttonPressed('9')} title = '9'/>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('7')} title = '7'>
+                <Text style = {styles.buttonsText}>7</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('8')} title = '8'>
+                <Text style = {styles.buttonsText}>8</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('9')} title = '9'>
+                <Text style = {styles.buttonsText}>9</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.rowOfNumbers}>
-              <Button onPress = {() => this.buttonPressed('4')} title = '4'/>
-              <Button onPress = {() => this.buttonPressed('5')} title = '5'/>
-              <Button onPress = {() => this.buttonPressed('6')} title = '6'/>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('4')} title = '4'>
+                <Text style = {styles.buttonsText}>4</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('5')} title = '5'>
+                <Text style = {styles.buttonsText}>5</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('6')} title = '6'>
+                <Text style = {styles.buttonsText}>6</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.rowOfNumbers}>
-              <Button onPress = {() => this.buttonPressed('1')} title = '1'/>
-              <Button onPress = {() => this.buttonPressed('2')} title = '2'/>
-              <Button onPress = {() => this.buttonPressed('3')} title = '3'/>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('1')} title = '1'>
+                <Text style = {styles.buttonsText}>1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('2')} title = '2'>
+                <Text style = {styles.buttonsText}>2</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('3')} title = '3'>
+                <Text style = {styles.buttonsText}>3</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.rowOfNumbers}>
-              <Button onPress = {() => this.buttonPressed('0')} title = '0'/>
-              <Button onPress = {() => this.buttonPressed('.')} title = '.'/>
-              <Button onPress = {() => this.result()} title = '='/>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('0')} title = '0'>
+                <Text style = {styles.buttonsText}>0</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('.')} title = '.'>
+                <Text style = {styles.buttonsText}>.</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.result()} title = '='>
+                <Text style = {styles.buttonsText}>=</Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style = {styles.operators}>
-            <Button onPress = {() => this.buttonPressed('CLEAR')} title = 'CLEAR'/>
-            <Button onPress = {() => this.buttonPressed('+')} title = '+'/>
-            <Button onPress = {() => this.buttonPressed('-')} title = '-'/>
-            <Button onPress = {() => this.buttonPressed('*')} title = 'x'/>
-            <Button onPress = {() => this.buttonPressed('/')} title = '/'/>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('CLEAR')} title = 'CLEAR'>
+                <Text style = {styles.buttonsText}>CLC</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('+')} title = '+'>
+                <Text style = {styles.buttonsText}>+</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('-')} title = '-'>
+                <Text style = {styles.buttonsText}>-</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('*')} title = '*'>
+                <Text style = {styles.buttonsText}>x</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.btn} onPress = {() => this.buttonPressed('/')} title = '/'>
+                <Text style = {styles.buttonsText}>/</Text>
+              </TouchableOpacity>
           </View>
         </View>
 
@@ -88,6 +122,13 @@ const styles = StyleSheet.create({
   buttons:{
     flex:3,
     flexDirection: 'row',
+  },
+
+  btn:{
+    flex:1,
+    alignItems:'center',
+    alignItems: 'stretch',
+    justifyContent: 'center'
   },
 
   calculation:{
@@ -113,11 +154,11 @@ const styles = StyleSheet.create({
   },
 
   textOperation:{
-    fontSize: 40,
+    fontSize: 60,
   },
 
   textResult:{
-    fontSize: 30,
+    fontSize: 40,
     color: 'grey',
   },
 
@@ -126,6 +167,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+
+  buttonsText:{
+    fontSize: 30,
+    color: 'black',
   },
 
 });
